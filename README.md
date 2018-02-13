@@ -1,4 +1,4 @@
-# enmapi CLI tool
+# create-enmapi-app
 
 ## Purpose
 
