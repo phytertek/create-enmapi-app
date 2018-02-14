@@ -29,11 +29,11 @@ const create_app = name => {
   if (fs.existsSync(path)) return console.error(ERROR_PATH_EXISTS);
   fs.mkdirSync(path);
 
-  const package_text = require('./resources/app_package_template')(name);
+  const package_text = require('./resources/app/package_template')(name);
   const package = beautify(package_text, beautifyOptions);
   fs.writeFileSync(`${path}/package.json`, package);
 
-  const index_text = require('./resources/app_index_template')(name);
+  const index_text = require('./resources/app/index_template')(name);
   const index = beautify(index_text, beautifyOptions);
   fs.writeFileSync(`${path}/index.js`, index);
   fs.writeFileSync(`${path}/.gitignore`, '/node_modules/');
