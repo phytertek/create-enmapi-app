@@ -4,6 +4,8 @@ const beautify = require('js-beautify');
 const Spinner = require('cli-spinner').Spinner;
 const cwd = process.cwd();
 
+const AUTH = ['--auth', '-a']; // TODO: Add auth template when specified
+
 const ERROR_PATH_EXISTS = 'App directory already exists';
 
 const SUCCESS_TEXT = (name, path) => `

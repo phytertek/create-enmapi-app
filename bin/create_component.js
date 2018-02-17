@@ -37,4 +37,5 @@ const create_component = (name, types) => {
   fs.mkdirSync(path);
   create_files(path, types.length ? specified_types(types) : standard_types);
 };
+
 module.exports = create_component;

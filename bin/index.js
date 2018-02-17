@@ -3,8 +3,9 @@ const COMPONENT = ['--component', '-c'];
 const TEMPLATE = ['--template', '-t'];
 
 const VERSION = ['--version', '-v'];
+const getCurrentVersion = () => require('../package.json').version;
 
-const AUTH = ['--auth', '-a']; // TODO: Add auth template when specified
+const AUTH = ['--auth', '-a'];
 
 const HELP = ['--help', '-h'];
 const HELP_TEXT = `
@@ -67,7 +68,7 @@ const new_app = name => {
 
 switch (true) {
   case VERSION.includes(arg1):
-    return console.log(require('../package.json').version);
+    return console.log(getCurrentVersion());
   case HELP.includes(arg1):
     return console.log(HELP_TEXT);
   case COMPONENT.includes(arg1):
@@ -75,5 +76,5 @@ switch (true) {
   case TEMPLATE.includes(arg1):
     return new_component('download_component', arg2);
   default:
-    return new_app(arg1);
+    return new_app(arg1, arg2);
 }
