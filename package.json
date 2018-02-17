@@ -1,6 +1,6 @@
 {
   "name": "create-enmapi-app",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "homepage": "https://github.com/phytertek/create-enmapi-app#readme",
   "repository": "https://github.com/phytertek/create-enmapi-app.git",
   "bugs": {
@@ -13,16 +13,13 @@
   },
   "scripts": {
     "patch": "npm run git:patch && npm run github:push",
-    "git:patch":
-      "git add . && git commit -m 'publish patch' && npm run patch:publish",
+    "git:patch": "git add . && git commit -m 'publish patch' && npm run patch:publish",
     "patch:publish": "npm version patch && npm publish",
     "minor": "npm run git:minor && npm run github:push",
-    "git:minor":
-      "git add . && git commit -m 'publish minor' && npm run minor:publish",
+    "git:minor": "git add . && git commit -m 'publish minor' && npm run minor:publish",
     "minor:publish": "npm version minor && npm publish",
     "major": "npm run git:major && npm run github:push",
-    "git:major":
-      "git add . && git commit -m 'publish major' && npm run major:publish",
+    "git:major": "git add . && git commit -m 'publish major' && npm run major:publish",
     "major:publish": "npm version major && npm publish",
     "github:push": "git push origin master"
   },
