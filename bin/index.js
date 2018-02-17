@@ -57,13 +57,13 @@ const new_component = (type, name, options) => {
         : ERROR_NO_TEMPLATE_NAME
     );
   if (!validName(name)) return console.error(ERROR_INVALID_COMPONENT_NAME);
-  return require(`./${type}`)(name, options);
+  return require(`../lib/${type}`)(name, options);
 };
 
 const new_app = name => {
   if (!name) return console.error(ERROR_NO_APP_NAME);
   if (!validName(name)) return console.error(ERROR_INVALID_APP_NAME);
-  return require('./create_app')(name);
+  return require('../lib/create_app')(name);
 };
 
 switch (true) {
