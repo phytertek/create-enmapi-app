@@ -1,7 +1,7 @@
 {
   "name": "create-enmapi-app",
   "version": "1.0.4",
-  "main": "index.js",
+  "main": "bin/index.js",
   "homepage": "https://github.com/phytertek/create-enmapi-app#readme",
   "repository": "https://github.com/phytertek/create-enmapi-app.git",
   "bugs": {
@@ -10,7 +10,7 @@
   "author": "Ryan Lowe <ryan.phytertek@gmail.com>",
   "license": "MIT",
   "bin": {
-    "create-enmapi-app": "bin/cli.js"
+    "create-enmapi-app": "bin/index.js"
   },
   "scripts": {
     "patch:publish": "npm version patch && npm publish",

@@ -1,6 +1,8 @@
 const CREATE_COMPONENT_FLAG = '-c';
 const DOWNLOAD_COMPONENT_FLAG = '-t';
 
+const VERSION = '--version';
+
 const HELP = '--help';
 const HELP_TEXT = `
   Usage: create-enmapi-app [component flags] <app or component name> [options]
@@ -58,6 +60,8 @@ const new_app = name => {
 };
 
 switch (arg1) {
+  case VERSION:
+    return console.log(require('../package.json').version);
   case HELP:
     return console.log(HELP_TEXT);
   case CREATE_COMPONENT_FLAG:
