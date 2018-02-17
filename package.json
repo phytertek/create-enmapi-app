@@ -1,7 +1,6 @@
 {
   "name": "create-enmapi-app",
   "version": "1.0.5",
-  "main": "bin/index.js",
   "homepage": "https://github.com/phytertek/create-enmapi-app#readme",
   "repository": "https://github.com/phytertek/create-enmapi-app.git",
   "bugs": {

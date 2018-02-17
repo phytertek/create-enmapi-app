@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 const CREATE_COMPONENT_FLAG = '-c';
 const DOWNLOAD_COMPONENT_FLAG = '-t';
 
