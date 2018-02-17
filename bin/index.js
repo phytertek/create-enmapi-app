@@ -1,10 +1,12 @@
 #! /usr/bin/env node
-const CREATE_COMPONENT_FLAG = '-c';
-const DOWNLOAD_COMPONENT_FLAG = '-t';
+const COMPONENT = ['--component', '-c'];
+const TEMPLATE = ['--template', '-t'];
 
-const VERSION = '--version';
+const VERSION = ['--version', '-v'];
 
-const HELP = '--help';
+const AUTH = ['--auth', '-a']; // TODO: Add auth template when specified
+
+const HELP = ['--help', '-h'];
 const HELP_TEXT = `
   Usage: create-enmapi-app [component flags] <app or component name> [options]
 
@@ -12,26 +14,29 @@ const HELP_TEXT = `
 
   If no component flags are specified, a new app will be created
 
-  Component Flags (optional):
-    -c      Create new component
-    -t      Create component from specified template
+  Component Flags:
+    -c, --component      Create new component
+    -t, --template       Create component from specified template
 
-  Options (optional):
+  App Options:
+    -a, --auth           Include auth template component
+
+  Component Options:
     If options are specified, only the specified component files will be created
     If no options are specified, all component files will be created
-    -schema     Create component schema file
-    -routes     Create component routes and controllers files
-    -services   Create component services file
+    -sc, --schema        Create component schema file
+    -rt, --routes        Create component routes file
+    -cn, --controllers   Create component controllers file
+    -sr, --services      Create component services file
 `;
 
-const ERROR_INVALID_NAME =
-  'name must start with a letter or number and may only contain letters, numbers, underscores, and dashes';
+const ERROR_INVALID_NAME = `name must start with a letter or number and may only contain letters, numbers, underscores, and dashes`;
 const ERROR_INVALID_APP_NAME = `App ${ERROR_INVALID_NAME}`;
 const ERROR_INVALID_COMPONENT_NAME = `Component ${ERROR_INVALID_NAME}`;
 const ERROR_NO_NAME = 'name must be specified';
 const ERROR_NO_APP_NAME = `App ${ERROR_NO_NAME}`;
 const ERROR_NO_COMPONENT_NAME = `Component ${ERROR_NO_NAME}`;
-const ERROR_NO_TEMPLATE_COMPONENT_NAME = `Component template name must be specified`;
+const ERROR_NO_TEMPLATE_NAME = `Component template name must be specified`;
 
 const arg1 = process.argv[2];
 const arg2 = process.argv[3];
@@ -48,7 +53,7 @@ const new_component = (type, name, options) => {
     return console.error(
       type === 'create_component'
         ? ERROR_NO_COMPONENT_NAME
-        : ERROR_NO_TEMPLATE_COMPONENT_NAME
+        : ERROR_NO_TEMPLATE_NAME
     );
   if (!validName(name)) return console.error(ERROR_INVALID_COMPONENT_NAME);
   return require(`./${type}`)(name, options);
@@ -60,14 +65,14 @@ const new_app = name => {
   return require('./create_app')(name);
 };
 
-switch (arg1) {
-  case VERSION:
+switch (true) {
+  case VERSION.includes(arg1):
     return console.log(require('../package.json').version);
-  case HELP:
+  case HELP.includes(arg1):
     return console.log(HELP_TEXT);
-  case CREATE_COMPONENT_FLAG:
+  case COMPONENT.includes(arg1):
     return new_component('create_component', arg2, argsRest);
-  case DOWNLOAD_COMPONENT_FLAG:
+  case TEMPLATE.includes(arg1):
     return new_component('download_component', arg2);
   default:
     return new_app(arg1);
