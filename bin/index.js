@@ -31,7 +31,7 @@ const HELP_TEXT = `
     -sr, --services      Create component services file
 `;
 
-const ERROR_INVALID_NAME = `name must start with a letter or number and may only contain letters, numbers, underscores, and dashes`;
+const ERROR_INVALID_NAME = `name must start with a letter and may only contain letters, numbers, underscores, and dashes`;
 const ERROR_INVALID_APP_NAME = `App ${ERROR_INVALID_NAME}`;
 const ERROR_INVALID_COMPONENT_NAME = `Component ${ERROR_INVALID_NAME}`;
 const ERROR_NO_NAME = 'name must be specified';
@@ -45,7 +45,7 @@ const argsRest = process.argv.slice(4);
 
 const validName = name => {
   return (
-    /^([A-Za-z\-\_\d])+$/.test(name) && /^([A-Za-z\d])+$/.test(name.charAt(0))
+    /^([A-Za-z\-\_\d])+$/.test(name) && /^([A-Za-z])+$/.test(name.charAt(0))
   );
 };
 
@@ -74,7 +74,7 @@ switch (true) {
   case COMPONENT.includes(arg1):
     return new_component('create_component', arg2, argsRest);
   case TEMPLATE.includes(arg1):
-    return new_component('download_component', arg2);
+    return new_component('template_component', arg2, argsRest);
   default:
     return new_app(arg1, arg2);
 }
